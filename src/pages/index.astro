@@ -64,7 +64,6 @@
         background: #0f0f1e;
       }
 
-      /* Animated background gradient */
       body::before {
         content: '';
         position: fixed;
@@ -85,7 +84,6 @@
         100% { background-position: 0% 50%; }
       }
 
-      /* Header/Navigation */
       header {
         background: rgba(15, 15, 30, 0.8);
         backdrop-filter: blur(20px);
@@ -145,7 +143,6 @@
         width: 100%;
       }
 
-      /* Hero Section */
       .hero {
         position: relative;
         padding: 120px 2rem;
@@ -266,7 +263,6 @@
         left: 100%;
       }
 
-      /* Three Benefits Section - TRANSPARENT */
       .benefits {
         padding: 100px 2rem;
         position: relative;
@@ -333,7 +329,6 @@
         z-index: 1;
       }
 
-      /* Service Section */
       .service-section {
         padding: 120px 2rem;
         max-width: 1400px;
@@ -405,7 +400,6 @@
         background-clip: text;
       }
 
-      /* Testimonials Section - GREEN GRADIENT */
       .testimonials {
         background: linear-gradient(135deg, #228b22 0%, #40c557 100%);
         padding: 100px 2rem;
@@ -541,7 +535,6 @@
         animation: slideInUp 0.6s ease 0.3s backwards;
       }
 
-      /* FAQ Section - TRANSPARENT */
       .faq {
         padding: 100px 2rem;
         max-width: 1400px;
@@ -622,7 +615,6 @@
         animation: fadeIn 0.4s ease;
       }
 
-      /* Team Section */
       .team {
         padding: 100px 2rem;
         max-width: 1400px;
@@ -721,7 +713,6 @@
         line-height: 1.6;
       }
 
-      /* Contact/CTA Section */
       .contact-section {
         background: linear-gradient(135deg, #40c557 0%, #228b22 100%);
         position: relative;
@@ -817,17 +808,6 @@
         background: rgba(255, 255, 255, 0.95);
       }
 
-      /* Footer */
-      footer {
-        background: rgba(15, 15, 30, 0.8);
-        backdrop-filter: blur(20px);
-        border-top: 1px solid rgba(64, 197, 87, 0.2);
-        color: #999;
-        padding: 2rem;
-        text-align: center;
-      }
-
-      /* Location Section */
       .location {
         padding: 100px 2rem;
         max-width: 1400px;
@@ -845,35 +825,75 @@
         font-weight: 800;
       }
 
-      .location-info {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        padding: 3rem 2rem;
+      .location-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        margin-top: 2rem;
+      }
+
+      .location-card {
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(10px);
         border-radius: 16px;
-        margin-bottom: 3rem;
-        border: 1px solid rgba(64, 197, 87, 0.2);
+        box-shadow: 0 8px 32px rgba(40,197,87,0.13);
+        padding: 2rem;
+        border: 1px solid rgba(64, 197, 87, 0.15);
+      }
+
+      .location-photo {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 8px 24px rgba(40,197,87,0.25);
       }
 
       .location-info h3 {
         color: #e8e8e8;
         margin-bottom: 1rem;
+        font-size: 1.4rem;
       }
 
       .location-info p {
         color: #b8b8b8;
-        margin: 0.5rem 0;
+        margin: 0.6rem 0;
+        font-size: 1.08rem;
+        line-height: 1.6;
+      }
+
+      .map-card {
+        background: transparent;
+        backdrop-filter: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        width: 100%;
       }
 
       .map {
         width: 100%;
-        height: 400px;
+        height: 450px;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 20px 50px rgba(64, 197, 87, 0.3);
-        border: 1px solid rgba(64, 197, 87, 0.2);
+        box-shadow: 0 12px 40px rgba(64, 197, 87, 0.2);
+        border: 1px solid rgba(64, 197, 87, 0.15);
       }
 
-      /* Animations */
+      footer {
+        background: rgba(15, 15, 30, 0.8);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(64, 197, 87, 0.2);
+        color: #999;
+        padding: 2rem;
+        text-align: center;
+      }
+
       @keyframes slideInUp {
         from {
           opacity: 0;
@@ -890,7 +910,107 @@
         to { opacity: 1; }
       }
 
-      /* Responsive */
+      /* Tablet Devices (768px - 1024px) */
+      @media (min-width: 768px) {
+        .location-flex {
+          flex-direction: row;
+          gap: 3rem;
+          align-items: flex-start;
+        }
+
+        .location-card {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .map-card {
+          flex: 1.2;
+          min-width: 0;
+        }
+
+        .map {
+          height: 400px;
+        }
+      }
+
+      /* Desktop (1024px+) */
+      @media (min-width: 1024px) {
+        .location-flex {
+          gap: 4rem;
+        }
+
+        .map {
+          height: 500px;
+        }
+      }
+
+      /* Mobile (under 768px) - OPTIMIZED FOR 80% MOBILE TRAFFIC */
+      @media (max-width: 767px) {
+        .location {
+          padding: 60px 1rem;
+        }
+
+        .location h2 {
+          font-size: 1.8rem;
+          margin-bottom: 2rem;
+        }
+
+        .location-flex {
+          gap: 1.8rem;
+        }
+
+        .location-card {
+          padding: 1.5rem;
+        }
+
+        .location-photo {
+          height: 200px;
+          margin-bottom: 1rem;
+        }
+
+        .location-info h3 {
+          font-size: 1.2rem;
+          margin-bottom: 0.8rem;
+        }
+
+        .location-info p {
+          font-size: 0.95rem;
+          margin: 0.5rem 0;
+        }
+
+        .map {
+          height: 350px;
+        }
+      }
+
+      /* Small Mobile (under 480px) */
+      @media (max-width: 479px) {
+        .location {
+          padding: 50px 0.75rem;
+        }
+
+        .location h2 {
+          font-size: 1.6rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .location-flex {
+          gap: 1.2rem;
+        }
+
+        .location-card {
+          padding: 1.2rem;
+        }
+
+        .location-photo {
+          height: 180px;
+        }
+
+        .map {
+          height: 300px;
+        }
+      }
+
       @media (max-width: 968px) {
         .hero,
         .service-section {
@@ -1018,7 +1138,6 @@
     <section class="testimonials" id="testimonials">
       <h2>Real Clarkston Patients, Real Back Pain Relief</h2>
       <div class="testimonials-grid">
-        
         <div class="testimonial-card">
           <div class="testimonial-content">
             <div class="rating">★★★★★</div>
@@ -1060,7 +1179,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -1099,7 +1217,6 @@
     <section class="team" id="team">
       <h2>Clarkston's Leading Back Pain Specialists</h2>
       <div class="team-grid">
-        
         <div class="team-card">
           <div class="team-image">
             <img src="public/Dayne.jpg" alt="Dr. Dayne Rogers - Back Pain Specialist" />
@@ -1143,22 +1260,29 @@
             <p>Monica brings extensive healthcare coordination experience and a genuine commitment to patient success. She guides patients through their treatment journey, from initial consultation through insurance verification and scheduling. Monica ensures every patient receives personalized attention and understands their treatment plan, making the path to pain relief as smooth as possible.</p>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- Location -->
     <section class="location">
       <h2>Visit Our Clarkston, Michigan Clinic</h2>
-      <div class="location-info">
-        <h3>LiveWell Robotic Therapy Clinic - Clarkston, MI</h3>
-        <p>📍 7138 Sashabaw Road, Clarkston, Michigan 48348</p>
-        <p>📞 (248) 965-0813</p>
-        <p>📧 info@livewellrtc.com</p>
-        <p>🕐 Monday-Friday: 9:00 AM - 6:00 PM | Saturday: By Appointment</p>
-      </div>
-      <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2958.1234567890!2d-83.2843!3d42.5801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824a5d5d5d5d5d5%3A0x1234567890abcdef!2sTroy%2C%20MI!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <div class="location-flex">
+        <div class="location-card">
+          <img src="public/location.jpg" alt="LiveWell Robotic Therapy Clinic Exterior - Clarkston, MI" class="location-photo" />
+          <div class="location-info">
+            <h3>LiveWell Robotic Therapy Clinic</h3>
+            <p><strong>Clarkston, Michigan</strong></p>
+            <p>📍 7138 Sashabaw Road<br>Clarkston, MI 48348</p>
+            <p>📞 <a href="tel:+12489650813" style="color: #40c557; text-decoration: none;">(248) 965-0813</a></p>
+            <p>📧 <a href="mailto:info@livewellrtc.com" style="color: #40c557; text-decoration: none;">info@livewellrtc.com</a></p>
+            <p style="margin-top: 1rem;">🕐 <strong>Hours</strong><br>Monday-Friday: 9:00 AM - 6:00 PM<br>Saturday: By Appointment</p>
+          </div>
+        </div>
+        <div class="map-card">
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2958.1234567890!2d-83.2843!3d42.5801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824a5d5d5d5d5d5%3A0x1234567890abcdef!2sTroy%2C%20MI!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="LiveWell Robotic Therapy Clinic Location Map"></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
