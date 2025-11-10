@@ -1,0 +1,141 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  image: string;
+  bio: string;
+}
+
+const { name, title, image, bio } = Astro.props;
+---
+
+<div class="team-card">
+  <div class="team-image">
+    <img src={image} alt={name} />
+  </div>
+  <div class="team-info">
+    <h3>{name}</h3>
+    <h4>{title}</h4>
+    <p>{bio}</p>
+  </div>
+</div>
+
+<style>
+  .team-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(64, 197, 87, 0.2);
+    position: relative;
+    opacity: 0;
+    transform: translateY(100px) scale(0.7) rotateY(20deg);
+  }
+
+  .team-card.animate {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateY(0);
+    animation: zoomSlideUpRotate 1.2s ease forwards;
+  }
+
+  /* Staggered animation delays */
+  .team-card:nth-child(1).animate {
+    animation: zoomSlideUpRotate 1.2s ease 0.1s forwards;
+  }
+
+  .team-card:nth-child(2).animate {
+    animation: zoomSlideUpRotate 1.2s ease 0.3s forwards;
+  }
+
+  .team-card:nth-child(3).animate {
+    animation: zoomSlideUpRotate 1.2s ease 0.5s forwards;
+  }
+
+  .team-card:nth-child(4).animate {
+    animation: zoomSlideUpRotate 1.2s ease 0.7s forwards;
+  }
+
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #40c557 0%, #228b22 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+    z-index: 1;
+  }
+
+  .team-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .team-card:hover {
+    transform: translateY(-25px);
+    border-color: rgba(64, 197, 87, 0.5);
+    box-shadow: 0 25px 60px rgba(64, 197, 87, 0.3);
+  }
+
+  .team-image {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, rgba(64, 197, 87, 0.1) 0%, rgba(34, 139, 34, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .team-card:hover .team-image img {
+    transform: scale(1.15);
+  }
+
+  .team-info {
+    padding: 2rem;
+  }
+
+  .team-info h3 {
+    color: #e8e8e8;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+
+  .team-info h4 {
+    color: #40c557;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .team-info p {
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  @keyframes zoomSlideUpRotate {
+    from {
+      opacity: 0;
+      transform: translateY(100px) scale(0.7) rotateY(20deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateY(0);
+    }
+  }
+</style>

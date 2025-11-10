@@ -1,0 +1,111 @@
+---
+---
+
+<header>
+  <nav>
+    <div class="logo">
+      <a href="#" onclick="scrollToTop(event)">
+        <img src="/public/Logo.png" alt="LiveWell" />
+      </a>
+    </div>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    background: rgba(15, 15, 30, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+  }
+
+  .logo img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.3));
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .logo img:hover {
+    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.6));
+    transform: scale(1.05);
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #e8e8e8;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #40c557 0%, #228b22 100%);
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #40c557;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // explicitly type the event to satisfy TypeScript (avoid implicit any)
+  function scrollToTop(event: MouseEvent) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+</script>

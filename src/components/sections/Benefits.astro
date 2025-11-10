@@ -1,0 +1,100 @@
+---
+import BenefitCard from '../ui/BenefitCard.astro';
+
+const benefits = [
+  {
+    title: "No Medications",
+    description: "Break free from painkillers, muscle relaxers, and opioids. Our robotic therapy provides lasting relief without pharmaceutical dependence or harmful side effects."
+  },
+  {
+    title: "No Injections",
+    description: "Say goodbye to cortisone shots, epidural steroid injections, and trigger point therapy. 100% non-invasive treatment that penetrates 8x deeper than human hands."
+  },
+  {
+    title: "No Surgery",
+    description: "Avoid spinal fusion, laminectomy, and discectomy. Our FDA-registered robotic therapy resolves herniated discs and sciatica without the risks of surgery or lengthy recovery."
+  }
+];
+---
+
+<section class="benefits" id="benefits">
+  <div class="benefits-container">
+    <div class="benefits-grid">
+      {benefits.map((benefit) => (
+        <BenefitCard title={benefit.title} description={benefit.description} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    padding: 100px 2rem;
+    position: relative;
+    max-width: 1400px;
+    margin: 60px auto;
+    background: transparent;
+  }
+
+  .benefits-container {
+    width: 100%;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 968px) {
+    .benefits {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      padding: 60px 2rem;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .benefits {
+      padding: 60px 1rem;
+    }
+  }
+</style>
+
+<script>
+  // ANIMATION STATE TRACKING - PREVENTS DOUBLE-TRIGGERING
+  const animationStates = new Map();
+
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const elementId = entry.target;
+      const isVisible = entry.isIntersecting;
+      let wasAnimated = animationStates.get(elementId) || false;
+
+      // Only trigger animation if state changed (entering view)
+      if (isVisible && !wasAnimated) {
+        entry.target.classList.add('animate');
+        animationStates.set(elementId, true);
+      } else if (!isVisible && wasAnimated) {
+        // Reset for next time they scroll back
+        entry.target.classList.remove('animate');
+        animationStates.set(elementId, false);
+      }
+    });
+  }, observerOptions);
+
+  // Observe benefit cards
+  document.querySelectorAll('.benefit-card').forEach(card => {
+    observer.observe(card);
+    animationStates.set(card, false);
+  });
+</script>

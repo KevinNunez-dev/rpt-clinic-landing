@@ -1,0 +1,77 @@
+---
+import TestimonialCard from '../ui/TestimonialCard.astro';
+
+const testimonials = [
+  {
+    name: "Jennifer M.",
+    location: "Clarkston, MI",
+    rating: 5,
+    text: "After 3 years of chronic lower back pain and failed cortisone shots, I was skeptical. But after just 4 sessions with the robotic therapy, my sciatica is 90% gone. I can finally sleep through the night!"
+  },
+  {
+    name: "Robert S.",
+    location: "Rochester Hills, MI",
+    rating: 5,
+    text: "I was scheduled for spinal fusion surgery when I found LiveWell RTC. The robotic precision therapy was my last hope - and it worked! Six sessions later, surgery cancelled. I'm pain-free and back to golfing."
+  },
+  {
+    name: "Lisa K.",
+    location: "Troy, MI",
+    rating: 5,
+    text: "Herniated disc at L5-S1 made sitting unbearable. Physical therapy didn't help. This robotic treatment reached muscles I didn't know existed. Within 2 weeks, I could sit comfortably again. Absolutely life-changing!"
+  }
+];
+---
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-container">
+    <h2>Real Clarkston Patients, Real Back Pain Relief</h2>
+    <div class="testimonials-grid">
+      {testimonials.map((testimonial) => (
+        <TestimonialCard 
+          name={testimonial.name}
+          location={testimonial.location}
+          rating={testimonial.rating}
+          text={testimonial.text}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: 100px 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(64, 197, 87, 0.05) 0%, rgba(34, 139, 34, 0.05) 100%);
+    border-radius: 20px;
+  }
+
+  .testimonials h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #40c557 0%, #228b22 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials {
+      padding: 60px 1rem;
+    }
+    
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
