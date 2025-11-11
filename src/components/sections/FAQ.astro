@@ -189,13 +189,15 @@ const faqs = [
   }
 </style>
 
-<script>
+<script lang="ts">
   // Wait for DOM to be ready
   document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll('.faq-item');
+    // typed NodeList so TypeScript knows these are HTMLElements
+    const faqItems = document.querySelectorAll<HTMLElement>('.faq-item');
     
     faqItems.forEach(item => {
-      item.addEventListener('click', function() {
+      // declare `this` type inside the handler for TS compatibility
+      item.addEventListener('click', function(this: HTMLElement) {
         // Toggle active class on clicked item
         const isActive = this.classList.contains('active');
         
