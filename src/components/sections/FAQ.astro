@@ -1,0 +1,212 @@
+---
+const faqs = [
+  {
+    question: "Can robotic therapy help my herniated disc or sciatica?",
+    answer: "Yes. Our RX 2600 robotic therapy has successfully treated thousands of patients with herniated discs, bulging discs, and sciatica."
+  },
+  {
+    question: "How many sessions do I need for chronic back pain relief?",
+    answer: "Most patients with chronic back pain, sciatica, or herniated discs see dramatic improvement within 4-6 weekly sessions."
+  },
+  {
+    question: "Why hasn't physical therapy or chiropractic helped my back pain?",
+    answer: "Traditional manual therapy and adjustments can't reach the deep myofascial restrictions causing chronic back pain."
+  },
+  {
+    question: "Does insurance cover robotic therapy for back pain?",
+    answer: "Many Michigan insurance plans cover robotic precision therapy for chronic back pain, sciatica, herniated discs, and related conditions."
+  },
+  {
+    question: "Is this treatment safe for herniated discs and spinal conditions?",
+    answer: "Absolutely. The RX 2600 is FDA-registered specifically for treating musculoskeletal pain including herniated discs."
+  },
+  {
+    question: "Will I need surgery for my back pain after trying this?",
+    answer: "Many of our patients avoid surgery completely after robotic therapy resolves their back pain symptoms."
+  }
+];
+---
+
+<section class="faq" id="faq">
+  <div class="faq-container">
+    <h2>Frequently Asked Questions About Back Pain Treatment</h2>
+    <div class="faq-grid">
+      {faqs.map((faq, index) => (
+        <div class="faq-item" data-index={index}>
+          <h4>{faq.question}</h4>
+          <p>{faq.answer}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: 100px 2rem;
+    background: transparent;
+    width: 100%;
+  }
+
+  .faq-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .faq h2 {
+    text-align: center;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, #228b22 0%, #40c557 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .faq-item {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(64, 197, 87, 0.3);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .faq-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #40c557 0%, #228b22 100%);
+    transition: left 0.3s;
+  }
+
+  .faq-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(64, 197, 87, 0.6);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(64, 197, 87, 0.3);
+  }
+
+  .faq-item:hover::before {
+    left: 0;
+  }
+
+  .faq-item h4 {
+    color: #e8e8e8;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    padding-right: 2rem;
+    line-height: 1.4;
+  }
+
+  .faq-item h4::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.8rem;
+    color: #40c557;
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+
+  .faq-item.active h4::after {
+    content: '−';
+    transform: rotate(180deg);
+  }
+
+  .faq-item p {
+    color: #b8b8b8;
+    font-size: 0.95rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    line-height: 1.6;
+    margin-top: 0;
+    transition: all 0.4s ease;
+  }
+
+  .faq-item.active p {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 968px) {
+    .faq {
+      padding: 60px 1rem;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .faq {
+      padding: 60px 1rem;
+    }
+
+    .faq h2 {
+      font-size: 1.8rem;
+    }
+
+    .faq-item {
+      padding: 1.5rem;
+    }
+
+    .faq-item h4 {
+      font-size: 1rem;
+      padding-right: 2.5rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      item.addEventListener('click', function() {
+        // Toggle active class on clicked item
+        const isActive = this.classList.contains('active');
+        
+        // Close all FAQ items
+        faqItems.forEach(faq => faq.classList.remove('active'));
+        
+        // If it wasn't active, open it
+        if (!isActive) {
+          this.classList.add('active');
+        }
+      });
+    });
+  });
+</script>

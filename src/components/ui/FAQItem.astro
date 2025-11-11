@@ -1,0 +1,99 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div class="faq-item">
+  <h4>{question}</h4>
+  <p>{answer}</p>
+</div>
+
+<style>
+  .faq-item {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(64, 197, 87, 0.3);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .faq-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #40c557 0%, #228b22 100%);
+    transition: left 0.3s;
+  }
+
+  .faq-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(64, 197, 87, 0.6);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(64, 197, 87, 0.3);
+  }
+
+  .faq-item:hover::before {
+    left: 0;
+  }
+
+  .faq-item h4 {
+    color: #e8e8e8;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    padding-right: 2rem;
+  }
+
+  .faq-item h4::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #40c557;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active h4::after {
+    content: '−';
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .faq-item p {
+    color: #b8b8b8;
+    font-size: 0.95rem;
+    display: none;
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  .faq-item.active p {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { 
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
